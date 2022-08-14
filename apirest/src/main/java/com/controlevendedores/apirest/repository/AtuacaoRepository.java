@@ -15,6 +15,6 @@ public interface AtuacaoRepository extends JpaRepository<Atuacao,Long> {
     @Query(value = " SELECT e.uf FROM estado e " +
             " INNER JOIN atuacao_estado ae ON ae.id_estado = e.id " +
             " INNER JOIN atuacao a ON a.id = ae.id_atuacao " +
-            " WHERE a.regiao = :regiao ", nativeQuery = true)
+            " WHERE UPPER(a.regiao) = UPPER(:regiao) ", nativeQuery = true)
     List<String> findEstadoByRegiao(String regiao);
 }
