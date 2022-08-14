@@ -3,6 +3,7 @@ package com.controlevendedores.apirest.controller;
 import com.controlevendedores.apirest.dto.AtuacaoDTO;
 import com.controlevendedores.apirest.service.AtuacaoService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -21,7 +22,8 @@ public class AtuacaoController {
 
     @PostMapping
     public ResponseEntity salvar(@RequestBody AtuacaoDTO dto){
-        return null;
+        atuacaoService.salvar(dto);
+        return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
 }

@@ -26,6 +26,16 @@ public class Vendedor {
 
     }
 
+    public Vendedor( String nome, String telefone, int idade, String cidade, String regiao, String estado, LocalDateTime dataInclusao) {
+        this.nome = nome;
+        this.telefone = telefone;
+        this.idade = idade;
+        this.cidade = cidade;
+        this.regiao = regiao;
+        this.estado = estado;
+        this.dataInclusao = dataInclusao;
+    }
+
     public Long getId() {
         return id;
     }

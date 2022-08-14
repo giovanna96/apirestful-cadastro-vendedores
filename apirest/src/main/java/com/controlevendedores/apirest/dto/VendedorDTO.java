@@ -1,9 +1,12 @@
 package com.controlevendedores.apirest.dto;
 
 import com.controlevendedores.apirest.domain.Estado;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonInclude;
 
 import java.util.List;
-
+@JsonIgnoreProperties(value = "regiao")
 public class VendedorDTO {
     String nome;
     String telefone;

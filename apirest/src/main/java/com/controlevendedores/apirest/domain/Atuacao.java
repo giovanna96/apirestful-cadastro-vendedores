@@ -15,17 +15,19 @@ public class Atuacao {
 
     String regiao;
 
-    @ManyToMany
+    @ManyToMany(cascade = CascadeType.PERSIST)
     @JoinTable(name = "atuacao_estado",
             joinColumns = @JoinColumn(name = "idAtuacao"),
             inverseJoinColumns = @JoinColumn(name = "idEstado"))
     List<Estado> estados;
-//    @OneToOne
-//    @JoinColumn(name = "id_regiao")
-//    Regiao regiao;
 
 
     public Atuacao() {
+    }
+
+    public Atuacao(String regiao, List<Estado> estados) {
+        this.regiao = regiao;
+        this.estados = estados;
     }
 
     public Long getId() {
@@ -51,11 +53,5 @@ public class Atuacao {
     public void setEstados(List<Estado> estados) {
         this.estados = estados;
     }
-//    public Regiao getRegiao() {
-//        return regiao;
-//    }
-//
-//    public void setRegiao(Regiao regiao) {
-//        this.regiao = regiao;
-//    }
+
 }

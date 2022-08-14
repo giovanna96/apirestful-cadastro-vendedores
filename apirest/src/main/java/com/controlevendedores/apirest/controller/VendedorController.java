@@ -5,6 +5,7 @@ import com.controlevendedores.apirest.dto.VendedorDTO;
 import com.controlevendedores.apirest.exception.RegistroNaoEncontradoException;
 import com.controlevendedores.apirest.service.VendedorService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -23,7 +24,8 @@ public class VendedorController {
 
     @PostMapping
     public ResponseEntity salvar(@RequestBody VendedorDTO dto){
-        return null;
+        vendedorService.salvar(dto);
+        return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
     @GetMapping
@@ -33,8 +35,8 @@ public class VendedorController {
     }
     @GetMapping(value = "/{id}")
     public ResponseEntity buscaVendedor(@PathVariable("id") Long id){
-        Vendedor vendedor = vendedorService.buscaVendedorById(id);
-        return ResponseEntity.ok(vendedor);
+        VendedorDTO vendedorDTO = vendedorService.buscaVendedorById(id);
+        return ResponseEntity.ok(vendedorDTO);
 
     }
 }

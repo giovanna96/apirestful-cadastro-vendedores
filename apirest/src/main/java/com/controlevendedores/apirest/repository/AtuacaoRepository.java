@@ -13,8 +13,8 @@ import java.util.List;
 @Repository
 public interface AtuacaoRepository extends JpaRepository<Atuacao,Long> {
     @Query(value = " SELECT e.uf FROM estado e " +
-            " INNER JOIN atuacao_estado ae ON ae.id_estado = e.id_estado " +
-            " INNER JOIN atuacao a ON a.id_atuacao = ae.id_atuacao " +
+            " INNER JOIN atuacao_estado ae ON ae.id_estado = e.id " +
+            " INNER JOIN atuacao a ON a.id = ae.id_atuacao " +
             " WHERE a.regiao = :regiao ", nativeQuery = true)
     List<String> findEstadoByRegiao(String regiao);
 }

@@ -32,6 +32,7 @@ public class VendedorServiceImpl implements VendedorService{
             throw new RegistroNaoEncontradoException("Nenhum registro encontrado.");
         }
         List<VendedorDTO> vendedoresDTO = new ArrayList<VendedorDTO>();
+
         vendedores.stream().forEach(vendedor -> vendedoresDTO.add(new VendedorDTO(
                 vendedor.getNome(),
                 vendedor.getTelefone(),
@@ -46,17 +47,30 @@ public class VendedorServiceImpl implements VendedorService{
 
     @Override
     @Transactional
-    public Vendedor salvar(Vendedor vendedor) {
-        vendedor.setDataInclusao(LocalDateTime.now());
+    public Vendedor salvar(VendedorDTO vendedorDTO) {
+        Vendedor vendedor = new Vendedor(
+                vendedorDTO.getNome(),
+                vendedorDTO.getTelefone(),
+                vendedorDTO.getIdade(),
+                vendedorDTO.getCidade(),
+                vendedorDTO.getRegiao(),
+                vendedorDTO.getEstado(),
+                LocalDateTime.now());
         return vendedorRepository.save(vendedor);
     }
 
     @Override
-    public Vendedor buscaVendedorById(Long id) {
+    public VendedorDTO buscaVendedorById(Long id) {
         Optional<Vendedor> vendedor =  vendedorRepository.findById(id);
         if(!vendedor.isPresent()){
             throw  new RegistroNaoEncontradoException("Nenhum registro encontrado.");
         }
-        return vendedor.get();
+        VendedorDTO vendedorDTO =  new VendedorDTO(vendedor.get().getNome(),
+                vendedor.get().getTelefone(),
+                vendedor.get().getIdade(),
+                vendedor.get().getCidade(),
+                vendedor.get().getEstado(),
+                atuacaoRepository.findEstadoByRegiao(vendedor.get().getRegiao()));
+        return vendedorDTO;
     }
 }

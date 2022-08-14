@@ -7,6 +7,6 @@ import java.util.List;
 
 public interface VendedorService {
      List<VendedorDTO> listaVendedores();
-     Vendedor salvar(Vendedor vendedor);
-     Vendedor buscaVendedorById(Long id);
+     Vendedor salvar(VendedorDTO vendedorDTO);
+     VendedorDTO buscaVendedorById(Long id);
 }
