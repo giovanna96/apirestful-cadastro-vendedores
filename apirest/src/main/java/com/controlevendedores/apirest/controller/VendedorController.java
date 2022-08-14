@@ -4,6 +4,8 @@ import com.controlevendedores.apirest.domain.Vendedor;
 import com.controlevendedores.apirest.dto.VendedorDTO;
 import com.controlevendedores.apirest.exception.RegistroNaoEncontradoException;
 import com.controlevendedores.apirest.service.VendedorService;
+import com.controlevendedores.apirest.view.Views;
+import com.fasterxml.jackson.annotation.JsonView;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -29,6 +31,7 @@ public class VendedorController {
     }
 
     @GetMapping
+    @JsonView(Views.VendedorView.class)
     public ResponseEntity listar(){
         List<VendedorDTO> vendedores = vendedorService.listaVendedores();
         return ResponseEntity.ok(vendedores);

@@ -1,19 +1,32 @@
 package com.controlevendedores.apirest.dto;
 
 import com.controlevendedores.apirest.domain.Estado;
+import com.controlevendedores.apirest.view.Views;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonView;
 
 import java.util.List;
-@JsonIgnoreProperties(value = "regiao")
 public class VendedorDTO {
+    @JsonView(Views.VendedorView.class)
     String nome;
+
+    @JsonView(Views.VendedorView.class)
     String telefone;
+
+    @JsonView(Views.VendedorView.class)
     int idade;
+
+    @JsonView(Views.VendedorView.class)
     String cidade;
+
+    @JsonView(Views.VendedorView.class)
     String estado;
+
     String regiao;
+
+    @JsonView(Views.VendedorView.class)
     List<String> estados;
 
     public VendedorDTO() {
