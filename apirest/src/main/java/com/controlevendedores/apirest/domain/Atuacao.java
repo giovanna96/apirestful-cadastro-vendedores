@@ -1,6 +1,7 @@
 package com.controlevendedores.apirest.domain;
 
 import javax.persistence.*;
+import java.util.List;
 
 /**
  * @author Giovanna Severo
@@ -12,9 +13,16 @@ public class Atuacao {
     @GeneratedValue(strategy = GenerationType.AUTO)
     Long id;
 
-    @OneToOne
-    @JoinColumn(name = "id_regiao")
-    Regiao regiao;
+    String regiao;
+
+    @ManyToMany
+    @JoinTable(name = "atuacao_estado",
+            joinColumns = @JoinColumn(name = "idAtuacao"),
+            inverseJoinColumns = @JoinColumn(name = "idEstado"))
+    List<Estado> estados;
+//    @OneToOne
+//    @JoinColumn(name = "id_regiao")
+//    Regiao regiao;
 
 
     public Atuacao() {
@@ -28,11 +36,26 @@ public class Atuacao {
         this.id = id;
     }
 
-    public Regiao getRegiao() {
+    public String getRegiao() {
         return regiao;
     }
 
-    public void setRegiao(Regiao regiao) {
+    public void setRegiao(String regiao) {
         this.regiao = regiao;
     }
+
+    public List<Estado> getEstados() {
+        return estados;
+    }
+
+    public void setEstados(List<Estado> estados) {
+        this.estados = estados;
+    }
+//    public Regiao getRegiao() {
+//        return regiao;
+//    }
+//
+//    public void setRegiao(Regiao regiao) {
+//        this.regiao = regiao;
+//    }
 }

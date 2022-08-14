@@ -1,6 +1,7 @@
 package com.controlevendedores.apirest.domain;
 
 import javax.persistence.*;
+import java.util.List;
 
 /**
  * @author Giovanna Severo
@@ -16,6 +17,9 @@ public class Estado {
     String nomeEstado;
 
     String uf;
+
+    @ManyToMany(mappedBy = "estados")
+    List<Atuacao> atuacoes;
 
     public Estado() {
     }
@@ -42,5 +46,13 @@ public class Estado {
 
     public void setUf(String uf) {
         this.uf = uf;
+    }
+
+    public List<Atuacao> getAtuacoes() {
+        return atuacoes;
+    }
+
+    public void setAtuacoes(List<Atuacao> atuacoes) {
+        this.atuacoes = atuacoes;
     }
 }

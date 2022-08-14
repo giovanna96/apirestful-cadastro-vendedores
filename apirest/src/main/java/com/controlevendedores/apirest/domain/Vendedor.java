@@ -2,6 +2,7 @@ package com.controlevendedores.apirest.domain;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 /**
  * @author Giovanna Severo
@@ -19,7 +20,7 @@ public class Vendedor {
     String  regiao;
     String estado;
     @Column(name = "data_inclusao")
-    LocalDate dataInclusao;
+    LocalDateTime dataInclusao;
 
     public Vendedor() {
 
@@ -81,11 +82,11 @@ public class Vendedor {
         this.estado = estado;
     }
 
-    public LocalDate getDataInclusao() {
+    public LocalDateTime getDataInclusao() {
         return dataInclusao;
     }
 
-    public void setDataInclusao(LocalDate dataInclusao) {
+    public void setDataInclusao(LocalDateTime dataInclusao) {
         this.dataInclusao = dataInclusao;
     }
 
